@@ -187,10 +187,11 @@ void set_loop(byte H,byte a,byte b,byte c)
 
 void start_race(){
   set_track_off();
-
-  set_custom_ramps();
   
+  set_custom_ramps();
+  set_track_base_color();
   track.show();
+  
   delay(2000);
   track.setPixelColor(12, track.Color(0,255,0));
   track.setPixelColor(11, track.Color(0,255,0));
@@ -220,7 +221,7 @@ void start_race(){
 
 void set_custom_ramps()
 {
-  set_ramp(20,120,140,180);
+  set_ramp(17,130,165,200);
 }
 
 void winner_fx()
@@ -259,7 +260,7 @@ void set_track_base_color()
 {
   for(int i=0;i<NPIXELS;i++)
   {
-    track.setPixelColor(i, track.Color(0,0,(DEF_GRAVITY - gravity_map[i])/8) );
+    track.setPixelColor(i, track.Color(0,0,(DEF_GRAVITY - gravity_map[i])) );
   };
 }
 
