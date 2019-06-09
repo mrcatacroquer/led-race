@@ -59,7 +59,7 @@ byte laps_player1=0;
 byte laps_player2=0;
 
 byte leader=0;
-byte laps_max=2; //total laps race
+byte laps_max=3; //total laps race
 
 float ACEL=0.2;
 float kf=0.015; //friction constant
@@ -77,27 +77,13 @@ int loop_delay_time = 5;
 
 void setup() {
   for(int i=0;i<NPIXELS;i++)
-  {
     gravity_map[i]= DEF_GRAVITY;
-  };
   
   track.begin();
   
   pinMode(PIN_P1,INPUT_PULLUP); 
-  pinMode(PIN_P2,INPUT_PULLUP);  
+  pinMode(PIN_P2,INPUT_PULLUP);   
 
-  if ((digitalRead(PIN_P1)==0)) //push switch 1 on reset for activate physic
-  {
-    set_ramp(12,90,100,110);    // ramp centred in LED 100 with 10 led fordward and 10 backguard 
-    
-    for(int i=0;i<NPIXELS;i++)
-    {
-      track.setPixelColor(i, track.Color(0,0,(DEF_GRAVITY - gravity_map[i])/8) );
-    };
-    
-    track.show();
-  };
-  
   start_race();    
 }
 
@@ -200,10 +186,9 @@ void set_loop(byte H,byte a,byte b,byte c)
 }
 
 void start_race(){
-  for(int i=0;i<NPIXELS;i++)
-  {
-    track.setPixelColor(i, track.Color(0,0,0));
-  };
+  set_track_off();
+
+  set_custom_ramps();
   
   track.show();
   delay(2000);
@@ -233,6 +218,11 @@ void start_race(){
   timestamp=0;                 
 };
 
+void set_custom_ramps()
+{
+  set_ramp(20,120,140,180);
+}
+
 void winner_fx()
 {
   int msize = sizeof(win_music) / sizeof(int);
@@ -257,6 +247,12 @@ void draw_car2(void){
   {
     track.setPixelColor(((word)dist2 % NPIXELS)+i, track.Color(255-i*20,0,0));
   };            
+}
+
+void set_track_off()
+{
+  for(int i=0;i<NPIXELS;i++)
+    track.setPixelColor(i, track.Color(0,0,0));
 }
 
 void set_track_base_color()
