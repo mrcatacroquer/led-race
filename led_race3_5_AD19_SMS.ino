@@ -35,8 +35,8 @@
 
 int NPIXELS=MAXLED; // leds on track
 
-#define COLOR1    track.Color(255,0,0)
-#define COLOR2    track.Color(0,255,0)
+#define COLOR1    track.Color(0,255,0)
+#define COLOR2    track.Color(255,0,0)
 
 #define DEF_GRAVITY 127
 
@@ -59,7 +59,7 @@ byte laps_player1=0;
 byte laps_player2=0;
 
 byte leader=0;
-byte laps_max=5; //total laps race
+byte laps_max=2; //total laps race
 
 float ACEL=0.2;
 float kf=0.015; //friction constant
