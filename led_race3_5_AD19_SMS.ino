@@ -173,19 +173,15 @@ void calculate_player2_position_delta()
   speed2-=speed2*kf; 
 }
 
-void set_ramp(byte H,byte a,byte b,byte c)
+void set_ramp(byte ramp_height,byte ramp_start,byte ramp_center,byte ramp_end)
 {
-  for(int i=0;i<(b-a);i++)
-  {
-    gravity_map[a+i]=DEF_GRAVITY -i*((float)H/(b-a));
-  };
+  for(int i=0;i < (ramp_center-ramp_start);i++)
+    gravity_map[ramp_start + i]=DEF_GRAVITY - i * ((float)ramp_height / (ramp_center-ramp_start));
   
-  gravity_map[b]=DEF_GRAVITY;
+  gravity_map[ramp_center] = DEF_GRAVITY;
   
-  for(int i=0;i<(c-b);i++)
-  {
-    gravity_map[b+i+1]=DEF_GRAVITY +H-i*((float)H/(c-b));
-  };
+  for(int i=0;i < (ramp_end - ramp_center);i++)
+    gravity_map[ramp_center + i + 1]=DEF_GRAVITY + ramp_height - i * ((float)ramp_height / (ramp_end - ramp_center));
 }
 
 void set_loop(byte H,byte a,byte b,byte c)
