@@ -35,7 +35,7 @@
 
 int NPIXELS=MAXLED; // leds on track
 
-#define COLOR1    track.Color(0,255,0)
+#define COLOR1    track.Color(0,155,0)
 #define COLOR2    track.Color(255,0,0)
 
 #define DEF_GRAVITY 127
